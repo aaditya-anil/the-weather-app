@@ -3,6 +3,7 @@ import axios from "axios";
 async function getCityWeather(cityName) {
     try {
         var WeatherDataModel= {
+            apiStatus : 500,
             location : "",
             region : "",
             country : "",
@@ -20,6 +21,7 @@ async function getCityWeather(cityName) {
         WeatherDataModel.celcius = apiReceivedData.data.current.temp_c;
         WeatherDataModel.condition = apiReceivedData.data.current.condition.text;
         WeatherDataModel.icon = apiReceivedData.data.current.condition.icon;
+        WeatherDataModel.apiStatus = apiReceivedData.status;
 
         return WeatherDataModel;
 

@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv'
-import { getCityWeatherController } from './src/controllers/WeatherController.js';
+import { getCityWeatherController } from './controllers/WeatherController.js';
 
 
 const app = express();
