@@ -9,14 +9,20 @@ const ShowWeather = () => {
     const inputRef = useRef();
     const [city, setCity] = useState(localStorage.getItem("city")? localStorage.getItem("city"): "London");
     const [weatherData, setWeatherData] = useState(null)
+    const [invalidCity, setInvalidCity] = useState(false);
 
     
     useEffect(()=>{
         async function fetchWeather() {
             const data = await getCityWeather(city)
+            console.log(data);
             if(data.apiStatus == 200){
                 setWeatherData(data)
                 localStorage.setItem("city", city);
+                setInvalidCity(false);
+            }
+            else{
+                setInvalidCity(true);
             }
         }
         fetchWeather();
@@ -28,20 +34,27 @@ const ShowWeather = () => {
     }
 
   return (
-    <div>
+    <div className='mainFrontend'>
         { !weatherData ? (
             <p>Loading...</p>
         ) : (
             <>
+            <img src={weatherData.icon}></img>
             <h1>{weatherData.location}</h1>
             <h3>{weatherData.country}</h3>
-            <h1>{weatherData.celcius}</h1>
+            <h1>{weatherData.celcius}&deg;</h1>
             <h3>{weatherData.condition}</h3>
-            <img src={weatherData.icon}></img>
             <p>{console.log(weatherData)}</p>
+            <br></br>
             <form onSubmit={changeCity}>
-                <input type="text" ref={inputRef}/>
+                <input type="text" ref={inputRef} placeholder='city name'/>
+                { invalidCity ? (
+                    <p>City not found</p>
+                ) : (
+                    <></>
+                )}
             </form>
+
             </>
         )
         }

@@ -13,7 +13,6 @@ async function getCityWeather(cityName) {
             icon: ""
         }
         const apiReceivedData = await axios.get('http://localhost:4000/api/weather', { params: { city: cityName } })
-        console.log(apiReceivedData);
         WeatherDataModel.location = apiReceivedData.data.location.name;
         WeatherDataModel.region = apiReceivedData.data.location.region;
         WeatherDataModel.country = apiReceivedData.data.location.country;
@@ -27,6 +26,7 @@ async function getCityWeather(cityName) {
 
         } catch (error) {
         console.error("Error fetching weather data:", error);
+        return WeatherDataModel.apiStatus = 500;
     }
   }
 
