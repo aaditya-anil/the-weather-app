@@ -6,7 +6,7 @@ A full-stack weather application built using **React** for the frontend and **Ex
 
 ## 📸 Preview
 
-![Weather App Screenshot](./client/src/assets/screenshot.png) <!-- Replace with actual screenshot path -->
+![Weather App Demo](./client/public/Demo.gif)
 
 ---
 
